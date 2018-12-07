@@ -1,12 +1,5 @@
 version: '2'
 services:
-    mongo-client:
-        container_name: mongo-client
-        image: mongoclient/mongoclient
-        ports: 
-            - '3000:3000'
-        links:
-            - ms-security-mongo
     ms-security:
         container_name: ms-security
         restart: always
