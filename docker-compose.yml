@@ -2,18 +2,8 @@ version: '2'
 services:
     ms-security:
         container_name: ms-security
-        restart: always
         build: ./ms-security
         ports:
             - '3001:3000'
-        links:
-            - ms-security-mongo
         volumes: 
             - './ms-security:/usr/src/app'
-    ms-security-mongo:
-        container_name: ms-security-mongo
-        image: mongo
-        volumes:
-            - './ms-security-mongo/data:/data/db'
-        ports:
-            - '27000:27017'

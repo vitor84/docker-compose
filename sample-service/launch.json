@@ -1,0 +1,20 @@
+{
+    "name": ".NET Core Docker Launch (console)",
+    "type": "coreclr",
+    "request": "launch",                    // we are going to run a new instance of our application
+    "preLaunchTask": "buildForDebug",       // name of the task that will build and run a container
+    "program": "/app/out/App.dll",          // path to program to run inside a container
+    "cwd": "/app/out",                      // working directory inside a container
+    "sourceFileMap": {
+        "/app": "${workspaceRoot}/src"      // mapping of source code inside a container to the source code on a host machine
+    },
+    "pipeTransport": {
+        "pipeProgram": "docker",            // use Docker as a pipe program
+        "pipeCwd": "${workspaceRoot}",
+        "pipeArgs": [
+            "exec -i docker.dotnet.debug_1" // attach to container and execute command of running app with attached debbuger
+        ],
+        "quoteArgs": false,
+        "debuggerPath": "/vsdbg/vsdbg"      // path to installed debugger inside a container
+    }
+}
